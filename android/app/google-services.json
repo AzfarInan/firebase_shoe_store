@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "786173119131",
+    "project_id": "fir-shoe-store-ad351",
+    "storage_bucket": "fir-shoe-store-ad351.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786173119131:android:72d679ff79e00c8162d43e",
+        "android_client_info": {
+          "package_name": "com.example.f"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA89g13tWo06b3LPC1ouYy4LaKHeyt35J8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
