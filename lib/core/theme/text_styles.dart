@@ -9,7 +9,7 @@ const TextTheme textTheme = TextTheme(
   ),
   displayMedium: TextStyle(
     fontSize: 36,
-    fontWeight: FontWeight.normal,
+    fontWeight: FontWeight.w600,
     color: AppColors.primaryNeutral500,
   ),
   displaySmall: TextStyle(
@@ -19,7 +19,7 @@ const TextTheme textTheme = TextTheme(
   ),
   headlineLarge: TextStyle(
     fontSize: 20,
-    fontWeight: FontWeight.normal,
+    fontWeight: FontWeight.w500,
     color: AppColors.primaryNeutral500,
   ),
   headlineMedium: TextStyle(
