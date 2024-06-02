@@ -8,7 +8,7 @@ class LoadingProductsSection extends StatelessWidget {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        color: AppColors.primaryNeutral0,
+        color: AppColors.primaryNeutral100,
         child: GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -47,7 +47,7 @@ class LoadingProductsSection extends StatelessWidget {
                             ),
                             Positioned(
                               top: 8,
-                              left: 0,
+                              left: 8,
                               child: Container(
                                 color: AppColors.primaryNeutral100,
                                 height: 16,
@@ -91,7 +91,6 @@ class LoadingProductsSection extends StatelessWidget {
                           width: 40,
                         ),
                       ),
-                      const SizedBox(width: 4),
                       Shimmer.fromColors(
                         baseColor: AppColors.primaryNeutral200,
                         highlightColor: AppColors.primaryNeutral100,
@@ -103,7 +102,6 @@ class LoadingProductsSection extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 4),
                   Shimmer.fromColors(
                     baseColor: AppColors.primaryNeutral200,
                     highlightColor: AppColors.primaryNeutral100,

@@ -56,7 +56,7 @@ class _ProductSectionState extends State<ProductSection> {
           return Expanded(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              color: AppColors.primaryNeutral0,
+              color: AppColors.primaryNeutral100,
               child: GridView.builder(
                 controller: _scrollController,
                 shrinkWrap: true,
@@ -69,92 +69,100 @@ class _ProductSectionState extends State<ProductSection> {
                   childAspectRatio: 0.7,
                 ),
                 itemBuilder: (context, index) {
-                  return Container(
-                    color: AppColors.primaryNeutral0,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: AppColors.primaryNeutral0,
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: AppColors.primaryNeutral300,
-                                width: 1,
-                              ),
-                            ),
-                            padding: const EdgeInsets.all(8),
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                CachedNetworkImage(
-                                  imageUrl:
-                                      cubit.products[index].getFirstImage(),
-                                  fit: BoxFit.contain,
-                                  errorWidget: (context, url, error) =>
-                                      const Icon(
-                                    Icons.image,
-                                  ),
+                  return GestureDetector(
+                    onTap: () {
+                      context.pushNamed(
+                        RouteNames.productDetails,
+                        extra: cubit.products[index],
+                      );
+                    },
+                    child: Container(
+                      color: AppColors.primaryNeutral100,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.primaryNeutral0,
+                                borderRadius: BorderRadius.circular(16),
+                                border: Border.all(
+                                  color: AppColors.primaryNeutral300,
+                                  width: 1,
                                 ),
-                                Positioned(
-                                  top: 8,
-                                  left: 0,
-                                  child: SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: CachedNetworkImage(
-                                      imageUrl:
-                                          cubit.products[index].brandLogo!,
-                                      color: AppColors.primaryNeutral500,
-                                      fit: BoxFit.contain,
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(
-                                        Icons.image,
+                              ),
+                              padding: const EdgeInsets.all(8),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  CachedNetworkImage(
+                                    imageUrl:
+                                        cubit.products[index].getFirstImage(),
+                                    fit: BoxFit.contain,
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(
+                                      Icons.image,
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 8,
+                                    left: 8,
+                                    child: SizedBox(
+                                      height: 20,
+                                      width: 20,
+                                      child: CachedNetworkImage(
+                                        imageUrl:
+                                            cubit.products[index].brandLogo!,
+                                        color: AppColors.primaryNeutral500,
+                                        fit: BoxFit.contain,
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(
+                                          Icons.image,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          cubit.products[index].name!,
-                          style: themeData.textTheme.bodyMedium,
-                        ),
-                        const SizedBox(height: 4),
-                        Row(
-                          children: [
-                            Image.asset(
-                              'assets/images/star.png',
-                              width: 14,
-                              height: 14,
-                            ),
-                            const SizedBox(width: 4),
-                            Text(
-                              cubit.products[index].ratings.toString(),
-                              style: themeData.textTheme.bodySmall,
-                            ),
-                            const SizedBox(width: 4),
-                            Text(
-                              '(${cubit.products[index].reviews!.length} Reviews)',
-                              style: themeData.textTheme.bodySmall!.copyWith(
-                                color: AppColors.primaryNeutral400,
-                                fontWeight: FontWeight.w200,
+                                ],
                               ),
                             ),
-                          ],
-                        ),
-                        Text(
-                          '\$${cubit.products[index].price?.toInt().toString()},00',
-                          style: themeData.textTheme.bodyMedium!.copyWith(
-                            color: AppColors.primaryNeutral900,
-                            fontWeight: FontWeight.w600,
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 8),
+                          Text(
+                            cubit.products[index].name!,
+                            style: themeData.textTheme.bodyMedium,
+                          ),
+                          const SizedBox(height: 4),
+                          Row(
+                            children: [
+                              Image.asset(
+                                'assets/images/star.png',
+                                width: 14,
+                                height: 14,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                cubit.products[index].ratings.toString(),
+                                style: themeData.textTheme.bodySmall,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                '(${cubit.products[index].reviews!.length} Reviews)',
+                                style: themeData.textTheme.bodySmall!.copyWith(
+                                  color: AppColors.primaryNeutral400,
+                                  fontWeight: FontWeight.w200,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            '\$${cubit.products[index].price?.toInt().toString()},00',
+                            style: themeData.textTheme.bodyMedium!.copyWith(
+                              color: AppColors.primaryNeutral900,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },

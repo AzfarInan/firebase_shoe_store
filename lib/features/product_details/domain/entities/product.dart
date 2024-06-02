@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_shoe_store/features/reviews/domain/entities/review.dart';
+import 'package:flutter/material.dart';
 
 class Product extends Equatable {
   final String? productId;
@@ -35,6 +36,44 @@ class Product extends Equatable {
 
   String getFirstImage() {
     return images != null && images!.isNotEmpty ? images!.first : '';
+  }
+
+  Color getColor(int index) {
+    if (colors != null && colors!.isNotEmpty) {
+      switch (colors![index].toString().toLowerCase()) {
+        case 'white':
+          return Colors.white;
+        case 'black':
+          return Colors.black;
+        case 'blue':
+          return Colors.blue.shade800;
+        case 'red':
+          return Colors.red.shade800;
+        case 'green':
+          return Colors.green.shade800;
+        case 'yellow':
+          return Colors.yellow.shade800;
+        case 'purple':
+          return Colors.purple.shade800;
+        default:
+          return Colors.white;
+      }
+    } else {
+      return Colors.white;
+    }
+  }
+
+  Color getIconColor(int index) {
+    if (colors != null && colors!.isNotEmpty) {
+      switch (colors![index].toString().toLowerCase()) {
+        case 'white':
+          return Colors.black;
+        default:
+          return Colors.white;
+      }
+    } else {
+      return Colors.white;
+    }
   }
 
   @override

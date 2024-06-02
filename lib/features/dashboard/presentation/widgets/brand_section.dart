@@ -55,7 +55,7 @@ class _BrandSectionState extends State<BrandSection> {
                     child: Text(
                       cubit.brands[index].name,
                       style: themeData.textTheme.headlineLarge!.copyWith(
-                        color: AppColors.primaryNeutral400,
+                        color: AppColors.primaryNeutral300,
                       ),
                     ),
                   );
