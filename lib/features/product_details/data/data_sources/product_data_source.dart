@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_shoe_store/features/product_details/data/models/product_model.dart';
 import 'package:firebase_shoe_store/features/product_details/data/models/product_request_model.dart';
+import 'package:logger/logger.dart';
 
 abstract class ProductDataSource {
   Future<List<ProductModel>> getProducts(ProductRequestModel request);
@@ -36,9 +38,30 @@ class ProductDataSourceImpl implements ProductDataSource {
           .map((doc) => ProductModel.fromFirestore(doc))
           .toList();
 
+      /// Update product rating if it is 0
+      products.forEach((product) async {
+        if (product.ratings! <= 0.0) {
+          Logger().i('Updating product rating for ${product.name}');
+          await updateProductRating(product.productId!);
+        }
+      });
+
       return products;
     } catch (e) {
       throw Exception("Failed to fetch products: $e");
+    }
+  }
+
+  Future<void> updateProductRating(String productId) async {
+    try {
+      HttpsCallable callable = FirebaseFunctions.instance
+          .httpsCallable('calculateAverageProductRatings');
+      final result = await callable.call(<String, dynamic>{
+        'productId': productId,
+      });
+      print(result.data['message']);
+    } catch (e) {
+      print('Failed to update product rating: $e');
     }
   }
 }

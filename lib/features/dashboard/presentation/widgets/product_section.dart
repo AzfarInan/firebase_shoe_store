@@ -147,7 +147,6 @@ class _ProductSectionState extends State<ProductSection> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 4),
                         Text(
                           '\$${cubit.products[index].price?.toInt().toString()},00',
                           style: themeData.textTheme.bodyMedium!.copyWith(

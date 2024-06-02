@@ -32,7 +32,9 @@ class ProductModel extends Product {
       price: data['price'],
       productId: doc.id,
       gender: data['gender'],
-      ratings: data['ratings'] ?? 0.0,
+      ratings: data['ratings'] != null
+          ? double.parse(data['ratings'].toStringAsFixed(2))
+          : 0.00,
       reviews: data['reviews'] != null
           ? List.from(data['reviews'])
               .map(
