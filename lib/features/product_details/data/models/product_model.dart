@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_shoe_store/features/product_details/domain/entities/product.dart';
+import 'package:firebase_shoe_store/features/reviews/domain/entities/review.dart';
 
 class ProductModel extends Product {
   const ProductModel({
@@ -32,7 +33,19 @@ class ProductModel extends Product {
       productId: doc.id,
       gender: data['gender'],
       ratings: data['ratings'] ?? 0.0,
-      reviews: data['reviews'] ?? [],
+      reviews: data['reviews'] != null
+          ? List.from(data['reviews'])
+              .map(
+                (e) => Review(
+                  userName: e['userName'],
+                  userImage: e['userImage'],
+                  rating: e['rating'],
+                  comment: e['comment'],
+                  createdAt: e['createdAt'],
+                ),
+              )
+              .toList()
+          : [],
       createdAt: data['createdAt'],
     );
   }

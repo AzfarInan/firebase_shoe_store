@@ -50,9 +50,7 @@ class _ProductSectionState extends State<ProductSection> {
           var cubit = BlocProvider.of<GetProductsCubit>(context);
 
           if (state is LoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const LoadingProductsSection();
           }
 
           return Expanded(
@@ -103,12 +101,12 @@ class _ProductSectionState extends State<ProductSection> {
                                   top: 8,
                                   left: 0,
                                   child: SizedBox(
-                                    height: 16,
-                                    width: 16,
+                                    height: 20,
+                                    width: 20,
                                     child: CachedNetworkImage(
                                       imageUrl:
                                           cubit.products[index].brandLogo!,
-                                      color: AppColors.primaryNeutral400,
+                                      color: AppColors.primaryNeutral500,
                                       fit: BoxFit.contain,
                                       errorWidget: (context, url, error) =>
                                           const Icon(

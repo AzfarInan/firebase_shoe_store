@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_shoe_store/features/reviews/domain/entities/review.dart';
 
 class Product extends Equatable {
   final String? productId;
@@ -13,7 +14,7 @@ class Product extends Equatable {
   final double? price;
   final String? gender;
   final double? ratings;
-  final List<dynamic>? reviews;
+  final List<Review>? reviews;
   final Timestamp? createdAt;
 
   const Product({
