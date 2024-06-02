@@ -44,7 +44,7 @@ const TextTheme textTheme = TextTheme(
   ),
   bodySmall: TextStyle(
     fontSize: 12,
-    fontWeight: FontWeight.normal,
+    fontWeight: FontWeight.bold,
     color: AppColors.primaryNeutral500,
   ),
 );

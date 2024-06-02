@@ -29,41 +29,46 @@ class _BrandSectionState extends State<BrandSection> {
     return BlocBuilder<GetBrandsCubit, BaseState>(
       builder: (context, state) {
         var cubit = context.read<GetBrandsCubit>();
-        return Container(
-          height: 40,
-          padding: const EdgeInsets.only(left: 16),
-          child: Center(
-            child: ListView.separated(
-              controller: _scrollController,
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: cubit.brands.length,
-              itemBuilder: (BuildContext context, int index) {
-                if (cubit.brands[index] == cubit.selectedBrand) {
-                  return Text(
-                    cubit.brands[index].name,
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  );
-                }
 
-                return GestureDetector(
-                  onTap: () {
-                    cubit.selectBrand(cubit.brands[index].id);
-                  },
-                  child: Text(
-                    cubit.brands[index].name,
-                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                          color: AppColors.primaryNeutral400,
-                        ),
-                  ),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return const SizedBox(width: 16);
-              },
+        if (state is SuccessState) {
+          return Container(
+            height: 40,
+            padding: const EdgeInsets.only(left: 16),
+            child: Center(
+              child: ListView.separated(
+                controller: _scrollController,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: cubit.brands.length,
+                itemBuilder: (BuildContext context, int index) {
+                  if (cubit.brands[index] == cubit.selectedBrand) {
+                    return Text(
+                      cubit.brands[index].name,
+                      style: themeData.textTheme.headlineLarge,
+                    );
+                  }
+
+                  return GestureDetector(
+                    onTap: () {
+                      cubit.selectBrand(cubit.brands[index].id);
+                    },
+                    child: Text(
+                      cubit.brands[index].name,
+                      style: themeData.textTheme.headlineLarge!.copyWith(
+                        color: AppColors.primaryNeutral400,
+                      ),
+                    ),
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return const SizedBox(width: 16);
+                },
+              ),
             ),
-          ),
-        );
+          );
+        }
+
+        return const SizedBox();
       },
     );
   }

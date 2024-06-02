@@ -26,7 +26,7 @@ class GetBrandsCubit extends Cubit<BaseState> {
       return;
     }
 
-    lastId != null
+    lastId == null
         ? emit(const LoadingState())
         : emit(const LoadingAgainState());
     try {
@@ -37,6 +37,7 @@ class GetBrandsCubit extends Cubit<BaseState> {
           if ((r).length < 10) {
             eop = true;
           }
+          lastId = (r).last.id;
           brands.addAll(r);
           return emit(SuccessState(data: r));
         },
