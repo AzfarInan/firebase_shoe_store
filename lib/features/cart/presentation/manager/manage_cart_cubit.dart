@@ -10,8 +10,6 @@ class ManageCartCubit extends Cubit<BaseState> {
   List<Cart> cartItems = [];
 
   void addToCart(Cart cart) {
-    emit(const LoadingState());
-
     /// Check if the item is already in the cart
     final int isItemInCart = cartItems.indexWhere(
       (element) => element.cartItem.productId == cart.cartItem.productId,
@@ -28,14 +26,12 @@ class ManageCartCubit extends Cubit<BaseState> {
         total: total,
       );
       _updateCache();
-      emit(const SuccessState(data: 'Added to cart'));
 
       return;
     }
 
     cartItems.add(cart);
     _updateCache();
-    emit(const SuccessState(data: 'Added to cart'));
   }
 
   void removeFromCart(Cart cart) {

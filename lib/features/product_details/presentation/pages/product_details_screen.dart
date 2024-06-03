@@ -19,6 +19,7 @@ part '../widgets/image_section.dart';
 part '../widgets/size_section.dart';
 part '../widgets/review_section.dart';
 part '../widgets/add_to_cart_bottom_sheet.dart';
+part '../widgets/add_to_cart_success_bottom_sheet.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   const ProductDetailsScreen({super.key, required this.product});
