@@ -165,7 +165,7 @@ class _AddToCartBottomSheetState extends State<AddToCartBottomSheet> {
                               .selectedColor!,
                           size: BlocProvider.of<ManageProductCubit>(context)
                               .selectedShoeSize!,
-                          total: _price,
+                          total: _price * _quantity,
                         ),
                       );
                       Navigator.pop(context);

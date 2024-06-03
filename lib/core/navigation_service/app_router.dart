@@ -1,5 +1,6 @@
 import 'package:firebase_shoe_store/core/globals/global_variables.dart';
 import 'package:firebase_shoe_store/core/globals/route_names.dart';
+import 'package:firebase_shoe_store/features/cart/presentation/pages/cart_screen.dart';
 import 'package:firebase_shoe_store/features/dashboard/presentation/pages/dashboard_screen.dart';
 import 'package:firebase_shoe_store/features/filter/presentation/pages/filter_screen.dart';
 import 'package:firebase_shoe_store/features/product_details/domain/entities/product.dart';
@@ -39,6 +40,13 @@ class AppRouter {
             path: RouteNames.filter,
             builder: (BuildContext context, GoRouterState state) {
               return const FilterScreen();
+            },
+          ),
+          GoRoute(
+            name: RouteNames.cart,
+            path: RouteNames.cart,
+            builder: (BuildContext context, GoRouterState state) {
+              return const CartScreen();
             },
           ),
         ],

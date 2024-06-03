@@ -1,9 +1,11 @@
 import 'package:firebase_shoe_store/core/base/base_state.dart';
+import 'package:firebase_shoe_store/core/globals/route_names.dart';
 import 'package:firebase_shoe_store/core/theme/app_colors.dart';
 import 'package:firebase_shoe_store/core/theme/theme_data.dart';
 import 'package:firebase_shoe_store/features/cart/presentation/manager/manage_cart_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PrimaryAppBar({
@@ -62,7 +64,7 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
                                 height: 24,
                               ),
                               onTap: () {
-                                // TODO: Navigate to cart screen
+                                context.pushNamed(RouteNames.cart);
                               },
                             ),
                             Positioned(
@@ -85,7 +87,7 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
                           height: 24,
                         ),
                         onTap: () {
-                          // TODO: Navigate to cart screen
+                          context.pushNamed(RouteNames.cart);
                         },
                       );
                     },
