@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_shoe_store/core/globals/route_names.dart';
 import 'package:firebase_shoe_store/core/theme/app_colors.dart';
 import 'package:firebase_shoe_store/core/theme/theme_data.dart';
 import 'package:firebase_shoe_store/core/widgets/button.dart';
@@ -7,6 +8,7 @@ import 'package:firebase_shoe_store/features/dashboard/presentation/widgets/prim
 import 'package:firebase_shoe_store/features/product_details/domain/entities/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:go_router/go_router.dart';
 
 part '../widgets/image_section.dart';
 part '../widgets/size_section.dart';
@@ -108,7 +110,12 @@ class ProductDetailsScreen extends StatelessWidget {
               const SizedBox(height: 30),
               Button.outlined(
                 label: 'SEE ALL REVIEW',
-                onPressed: () {},
+                onPressed: () {
+                  context.pushNamed(
+                    RouteNames.reviews,
+                    extra: product,
+                  );
+                },
               ),
               const SizedBox(height: 30),
             ],

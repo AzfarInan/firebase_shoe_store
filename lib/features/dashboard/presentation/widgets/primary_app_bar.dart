@@ -9,12 +9,16 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.titleStyle,
     this.showLeading = false,
     this.showCart = true,
+    this.actions,
+    this.centerTitle = false,
   });
 
   final String title;
   final TextStyle? titleStyle;
   final bool showLeading;
   final bool showCart;
+  final List<Widget>? actions;
+  final bool centerTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -35,22 +39,23 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
         title,
         style: titleStyle ?? themeData.textTheme.displayMedium,
       ),
-      centerTitle: false,
-      actions: [
-        showCart
-            ? GestureDetector(
-                child: Image.asset(
-                  'assets/images/cart.png',
-                  width: 24,
-                  height: 24,
-                ),
-                onTap: () {
-                  // TODO: Navigate to cart screen
-                },
-              )
-            : const SizedBox(),
-        const SizedBox(width: 16),
-      ],
+      centerTitle: centerTitle,
+      actions: actions ??
+          [
+            showCart
+                ? GestureDetector(
+                    child: Image.asset(
+                      'assets/images/cart.png',
+                      width: 24,
+                      height: 24,
+                    ),
+                    onTap: () {
+                      // TODO: Navigate to cart screen
+                    },
+                  )
+                : const SizedBox(),
+            const SizedBox(width: 16),
+          ],
     );
   }
 

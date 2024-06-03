@@ -9,6 +9,7 @@ import 'package:firebase_shoe_store/features/product_details/data/repositories/p
 import 'package:firebase_shoe_store/features/product_details/domain/repositories/product_repository.dart';
 import 'package:firebase_shoe_store/features/product_details/domain/use_cases/get_products.dart';
 import 'package:firebase_shoe_store/features/product_details/presentation/manager/get_products_cubit.dart';
+import 'package:firebase_shoe_store/features/reviews/presentation/manager/manage_review_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -17,6 +18,7 @@ Future<void> setupServiceLocator() async {
   /// Blocs
   getIt.registerFactory(() => GetBrandsCubit(useCase: getIt()));
   getIt.registerFactory(() => GetProductsCubit(useCase: getIt()));
+  getIt.registerFactory(() => ManageReviewCubit());
 
   /// Use cases
   getIt.registerLazySingleton(() => GetBrands(repository: getIt()));
