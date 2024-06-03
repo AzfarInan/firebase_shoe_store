@@ -17,8 +17,9 @@ class Product extends Equatable {
   final double? ratings;
   final List<Review>? reviews;
   final Timestamp? createdAt;
+  final List<double> sortedSizes;
 
-  const Product({
+  Product({
     required this.productId,
     required this.name,
     required this.brandId,
@@ -32,7 +33,7 @@ class Product extends Equatable {
     required this.ratings,
     required this.reviews,
     required this.createdAt,
-  });
+  }) : sortedSizes = List<double>.from(sizes!.cast<double>())..sort();
 
   String getFirstImage() {
     return images != null && images!.isNotEmpty ? images!.first : '';
@@ -91,5 +92,6 @@ class Product extends Equatable {
         ratings,
         reviews,
         createdAt,
+        sortedSizes,
       ];
 }

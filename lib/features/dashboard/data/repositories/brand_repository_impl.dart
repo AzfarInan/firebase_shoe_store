@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:firebase_shoe_store/core/base/domain/entity/failure.dart';
+import 'package:firebase_shoe_store/core/base/failure.dart';
 import 'package:firebase_shoe_store/features/dashboard/data/data_sources/brand_data_source.dart';
 import 'package:firebase_shoe_store/features/dashboard/data/models/brand_model.dart';
 import 'package:firebase_shoe_store/features/dashboard/domain/entities/brand_entity.dart';

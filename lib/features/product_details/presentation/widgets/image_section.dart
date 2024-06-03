@@ -14,6 +14,15 @@ class _ImageSectionState extends State<ImageSection> {
   int selectedColorIndex = 0;
 
   @override
+  void initState() {
+    super.initState();
+
+    BlocProvider.of<ManageProductCubit>(context).selectColor(
+      widget.product.colors![selectedColorIndex],
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.center,
@@ -116,6 +125,9 @@ class _ImageSectionState extends State<ImageSection> {
                       setState(() {
                         selectedColorIndex = index;
                       });
+                      BlocProvider.of<ManageProductCubit>(context).selectColor(
+                        widget.product.colors![selectedColorIndex],
+                      );
                     },
                     child: Container(
                       width: 20.0,

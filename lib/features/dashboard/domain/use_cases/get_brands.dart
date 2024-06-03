@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:firebase_shoe_store/core/base/domain/use_case/use_case.dart';
+import 'package:firebase_shoe_store/core/base/use_case.dart';
 import 'package:firebase_shoe_store/features/dashboard/domain/entities/brand_entity.dart';
 import 'package:firebase_shoe_store/features/dashboard/domain/repositories/brand_repository.dart';
 

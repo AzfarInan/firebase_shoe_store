@@ -30,6 +30,16 @@ class _BrandSectionState extends State<BrandSection> {
       builder: (context, state) {
         var cubit = context.read<GetBrandsCubit>();
 
+        if (state is LoadingState || state is InitialState) {
+          return const Expanded(
+            child: Center(
+              child: CircularProgressIndicator(
+                color: AppColors.primaryNeutral500,
+              ),
+            ),
+          );
+        }
+
         if (state is SuccessState) {
           return Container(
             height: 40,

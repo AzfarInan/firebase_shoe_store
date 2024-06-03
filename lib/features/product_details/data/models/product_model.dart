@@ -3,7 +3,7 @@ import 'package:firebase_shoe_store/features/product_details/domain/entities/pro
 import 'package:firebase_shoe_store/features/reviews/domain/entities/review.dart';
 
 class ProductModel extends Product {
-  const ProductModel({
+  ProductModel({
     required super.productId,
     required super.name,
     required super.brandId,

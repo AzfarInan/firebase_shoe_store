@@ -1,4 +1,4 @@
-import 'package:firebase_shoe_store/core/base/presentation/base_state.dart';
+import 'package:firebase_shoe_store/core/base/base_state.dart';
 import 'package:firebase_shoe_store/features/product_details/data/models/product_request_model.dart';
 import 'package:firebase_shoe_store/features/product_details/domain/entities/product.dart';
 import 'package:firebase_shoe_store/features/product_details/domain/use_cases/get_products.dart';

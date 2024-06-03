@@ -1,6 +1,9 @@
+import 'package:firebase_shoe_store/core/base/base_state.dart';
 import 'package:firebase_shoe_store/core/theme/app_colors.dart';
 import 'package:firebase_shoe_store/core/theme/theme_data.dart';
+import 'package:firebase_shoe_store/features/cart/presentation/manager/manage_cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PrimaryAppBar({
@@ -43,14 +46,45 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: actions ??
           [
             showCart
-                ? GestureDetector(
-                    child: Image.asset(
-                      'assets/images/cart.png',
-                      width: 24,
-                      height: 24,
-                    ),
-                    onTap: () {
-                      // TODO: Navigate to cart screen
+                ? BlocBuilder<ManageCartCubit, BaseState>(
+                    builder: (context, state) {
+                      var cubit = BlocProvider.of<ManageCartCubit>(context);
+                      if (cubit.cartItems.isNotEmpty) {
+                        return Stack(
+                          children: [
+                            GestureDetector(
+                              child: Image.asset(
+                                'assets/images/cart.png',
+                                width: 24,
+                                height: 24,
+                              ),
+                              onTap: () {
+                                // TODO: Navigate to cart screen
+                              },
+                            ),
+                            Positioned(
+                              right: 0,
+                              top: 0,
+                              child: Image.asset(
+                                'assets/images/red_dot.png',
+                                width: 8,
+                                height: 8,
+                              ),
+                            ),
+                          ],
+                        );
+                      }
+
+                      return GestureDetector(
+                        child: Image.asset(
+                          'assets/images/cart.png',
+                          width: 24,
+                          height: 24,
+                        ),
+                        onTap: () {
+                          // TODO: Navigate to cart screen
+                        },
+                      );
                     },
                   )
                 : const SizedBox(),

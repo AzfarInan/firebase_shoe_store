@@ -4,15 +4,21 @@ import 'package:firebase_shoe_store/core/globals/route_names.dart';
 import 'package:firebase_shoe_store/core/theme/app_colors.dart';
 import 'package:firebase_shoe_store/core/theme/theme_data.dart';
 import 'package:firebase_shoe_store/core/widgets/button.dart';
+import 'package:firebase_shoe_store/features/cart/domain/entities/cart.dart';
+import 'package:firebase_shoe_store/features/cart/domain/entities/cart_item.dart';
+import 'package:firebase_shoe_store/features/cart/presentation/manager/manage_cart_cubit.dart';
 import 'package:firebase_shoe_store/features/dashboard/presentation/widgets/primary_app_bar.dart';
 import 'package:firebase_shoe_store/features/product_details/domain/entities/product.dart';
+import 'package:firebase_shoe_store/features/product_details/presentation/manager/manage_product_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:go_router/go_router.dart';
 
 part '../widgets/image_section.dart';
 part '../widgets/size_section.dart';
 part '../widgets/review_section.dart';
+part '../widgets/add_to_cart_bottom_sheet.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   const ProductDetailsScreen({super.key, required this.product});
@@ -25,6 +31,7 @@ class ProductDetailsScreen extends StatelessWidget {
       backgroundColor: AppColors.primaryNeutral100,
       appBar: const PrimaryAppBar(title: '', showLeading: true),
       body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -155,7 +162,15 @@ class ProductDetailsScreen extends StatelessWidget {
             Expanded(
               child: Button.filled(
                 label: 'ADD TO CART',
-                onPressed: () {},
+                onPressed: () {
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AddToCartBottomSheet(product: product);
+                    },
+                  );
+                },
               ),
             ),
           ],

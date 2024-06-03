@@ -1,4 +1,4 @@
-import 'package:firebase_shoe_store/core/base/presentation/base_state.dart';
+import 'package:firebase_shoe_store/core/base/base_state.dart';
 import 'package:firebase_shoe_store/features/dashboard/domain/entities/brand_entity.dart';
 import 'package:firebase_shoe_store/features/dashboard/domain/use_cases/get_brands.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

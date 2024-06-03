@@ -13,6 +13,15 @@ class _SizeSectionState extends State<SizeSection> {
   int selectedIndex = 0;
 
   @override
+  void initState() {
+    super.initState();
+
+    BlocProvider.of<ManageProductCubit>(context).selectShoeSize(
+      widget.product.sortedSizes[selectedIndex],
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,13 +40,16 @@ class _SizeSectionState extends State<SizeSection> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              final size = widget.product.sizes![index];
+              final size = widget.product.sortedSizes[index];
 
               return GestureDetector(
                 onTap: () {
                   setState(() {
                     selectedIndex = index;
                   });
+                  BlocProvider.of<ManageProductCubit>(context).selectShoeSize(
+                    widget.product.sortedSizes[selectedIndex],
+                  );
                 },
                 child: Container(
                   height: 40,
@@ -54,7 +66,10 @@ class _SizeSectionState extends State<SizeSection> {
                     shape: BoxShape.circle,
                   ),
                   child: Text(
-                    size.toString(),
+                    /// Display the size of the shoe like: 41 or 42.5
+                    size.toString().split('.')[1] == '0'
+                        ? size.toString().split('.')[0]
+                        : size.toString(),
                     style: themeData.textTheme.bodySmall!.copyWith(
                       color: selectedIndex == index
                           ? AppColors.primaryNeutral0
@@ -65,7 +80,7 @@ class _SizeSectionState extends State<SizeSection> {
               );
             },
             separatorBuilder: (context, index) => const SizedBox(width: 15),
-            itemCount: widget.product.sizes!.length,
+            itemCount: widget.product.sortedSizes.length,
           ),
         ),
       ],
