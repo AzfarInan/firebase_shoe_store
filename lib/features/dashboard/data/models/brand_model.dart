@@ -6,14 +6,25 @@ class BrandModel extends Brand {
     required super.id,
     required super.name,
     required super.logo,
+    required super.products,
   });
 
   factory BrandModel.fromFirestore(DocumentSnapshot doc) {
     var data = doc.data() as Map<String, dynamic>;
-    return BrandModel(id: doc.id, name: data['name'], logo: data['logo']);
+    return BrandModel(
+      id: doc.id,
+      name: data['name'],
+      logo: data['logo'],
+      products: data['products'],
+    );
   }
 
   Brand toEntity() {
-    return Brand(id: super.id, name: super.name, logo: super.logo);
+    return Brand(
+      id: super.id,
+      name: super.name,
+      logo: super.logo,
+      products: super.products,
+    );
   }
 }

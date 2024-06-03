@@ -1,6 +1,7 @@
 import 'package:firebase_shoe_store/core/globals/global_variables.dart';
 import 'package:firebase_shoe_store/core/globals/route_names.dart';
 import 'package:firebase_shoe_store/features/dashboard/presentation/pages/dashboard_screen.dart';
+import 'package:firebase_shoe_store/features/filter/presentation/pages/filter_screen.dart';
 import 'package:firebase_shoe_store/features/product_details/domain/entities/product.dart';
 import 'package:firebase_shoe_store/features/product_details/presentation/pages/product_details_screen.dart';
 import 'package:firebase_shoe_store/features/reviews/presentation/pages/review_screen.dart';
@@ -31,6 +32,13 @@ class AppRouter {
             path: RouteNames.reviews,
             builder: (BuildContext context, GoRouterState state) {
               return ReviewScreen(product: state.extra as Product);
+            },
+          ),
+          GoRoute(
+            name: RouteNames.filter,
+            path: RouteNames.filter,
+            builder: (BuildContext context, GoRouterState state) {
+              return const FilterScreen();
             },
           ),
         ],

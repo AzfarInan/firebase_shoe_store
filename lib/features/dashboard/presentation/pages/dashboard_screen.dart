@@ -65,41 +65,72 @@ class _DashboardScreenState extends State<DashboardScreen> {
         floatingActionButton: BlocBuilder<GetProductsCubit, BaseState>(
           builder: (context, state) {
             if (state is LoadingAgainState) {
-              return Flexible(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryNeutral900,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const SizedBox(
-                        height: 22,
-                        width: 22,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                              AppColors.primaryNeutral0),
-                        ),
+              return Container(
+                decoration: BoxDecoration(
+                  color: AppColors.primaryNeutral900,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            AppColors.primaryNeutral0),
                       ),
-                      const SizedBox(width: 10),
-                      Text(
-                        'Loading More Products',
-                        style: themeData.textTheme.bodySmall!.copyWith(
-                          fontWeight: FontWeight.w300,
-                          color: AppColors.primaryNeutral0,
-                        ),
+                    ),
+                    const SizedBox(width: 16),
+                    Text(
+                      'LOADING',
+                      style: themeData.textTheme.bodySmall!.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.primaryNeutral0,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               );
             }
 
-            return const SizedBox();
+            return GestureDetector(
+              onTap: () {
+                context.pushNamed(RouteNames.filter);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.primaryNeutral900,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 22,
+                      width: 22,
+                      child: Image.asset(
+                        'assets/images/filter.png',
+                        color: AppColors.primaryNeutral0,
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Text(
+                      'FILTER',
+                      style: themeData.textTheme.bodySmall!.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.primaryNeutral0,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
           },
         ),
       ),

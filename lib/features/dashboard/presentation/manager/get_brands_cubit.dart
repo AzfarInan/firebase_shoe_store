@@ -11,7 +11,9 @@ class GetBrandsCubit extends Cubit<BaseState> {
 
   final GetBrands useCase;
 
-  final List<Brand> brands = [const Brand(id: 'All', name: 'All', logo: '')];
+  final List<Brand> brands = [
+    const Brand(id: 'All', name: 'All', logo: '', products: [])
+  ];
   Brand? selectedBrand;
   String? lastId;
   bool eop = false;
@@ -58,7 +60,7 @@ class GetBrandsCubit extends Cubit<BaseState> {
 
   void clearData() {
     brands.clear();
-    brands.add(const Brand(id: 'All', name: 'All', logo: ''));
+    brands.add(const Brand(id: 'All', name: 'All', logo: '', products: []));
     lastId = null;
     selectedBrand = null;
     selectedBrand = brands.first;
