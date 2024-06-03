@@ -8,6 +8,13 @@ class GenderSection extends StatefulWidget {
 }
 
 class _GenderSectionState extends State<GenderSection> {
+  @override
+  void initState() {
+    super.initState();
+
+    selectedGender = context.read<ManageFilterCubit>().selectedGender;
+  }
+
   int? selectedGender;
 
   @override

@@ -19,6 +19,11 @@ class GetProductsCubit extends Cubit<BaseState> {
   Future<void> getProducts({
     bool firstTime = false,
     required String brandId,
+    String? gender,
+    String? color,
+    double? minPrice,
+    double? maxPrice,
+    String? sortBy,
   }) async {
     if (firstTime) {
       clearData();
@@ -35,6 +40,11 @@ class GetProductsCubit extends Cubit<BaseState> {
         ProductRequestModel(
           brandId: brandId,
           lastId: lastId,
+          gender: gender,
+          color: color,
+          minPrice: minPrice,
+          maxPrice: maxPrice,
+          sortBy: sortBy,
         ),
       );
       result.fold(

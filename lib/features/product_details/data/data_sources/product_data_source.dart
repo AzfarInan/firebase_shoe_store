@@ -15,11 +15,44 @@ class ProductDataSourceImpl implements ProductDataSource {
   @override
   Future<List<ProductModel>> getProducts(ProductRequestModel request) async {
     try {
-      Query query = _productsCollection.limit(10);
+      Query query = _productsCollection;
+
+      Logger().i('Fetching products with request: ${request.toString()}');
 
       /// Filter by brandId if not 'All'
       if (request.brandId != 'All') {
         query = query.where('brandId', isEqualTo: request.brandId);
+      }
+
+      /// Filter by gender
+      if (request.gender != null && request.gender!.isNotEmpty) {
+        query = query.where('gender', isEqualTo: request.gender);
+      }
+
+      /// Filter by color
+      if (request.color != null && request.color!.isNotEmpty) {
+        query = query.where('colors', arrayContains: request.color);
+      }
+
+      /// Filter by price range
+      if (request.minPrice != null && request.maxPrice != null) {
+        query = query.where('price', isGreaterThanOrEqualTo: request.minPrice);
+        query = query.where('price', isLessThanOrEqualTo: request.maxPrice);
+      }
+
+      // Handle sorting
+      if (request.sortBy != null) {
+        if (request.minPrice == null &&
+            request.maxPrice == null &&
+            request.sortBy == 'lowest_price') {
+          query = query.orderBy('price', descending: false);
+        } else if (request.minPrice == null &&
+            request.maxPrice == null &&
+            request.sortBy == 'highest_price') {
+          query = query.orderBy('price', descending: true);
+        } else if (request.sortBy == 'recent') {
+          query = query.orderBy('createdAt', descending: true);
+        }
       }
 
       /// Handle pagination if lastId is provided
@@ -33,6 +66,10 @@ class ProductDataSourceImpl implements ProductDataSource {
         query = query.startAfterDocument(lastDoc);
       }
 
+      /// Limit the number of results
+      query = query.limit(10);
+
+      /// Fetch products
       QuerySnapshot querySnapshot = await query.get();
       List<ProductModel> products = querySnapshot.docs
           .map((doc) => ProductModel.fromFirestore(doc))

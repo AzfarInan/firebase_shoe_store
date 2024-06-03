@@ -8,7 +8,16 @@ class PriceRangeSection extends StatefulWidget {
 }
 
 class _PriceRangeSectionState extends State<PriceRangeSection> {
-  RangeValues _currentRangeValues = const RangeValues(0, 2000);
+  @override
+  void initState() {
+    super.initState();
+
+    _currentRangeValues =
+        BlocProvider.of<ManageFilterCubit>(context).selectedRangeValue ??
+            const RangeValues(0, 2000);
+  }
+
+  RangeValues? _currentRangeValues;
 
   @override
   Widget build(BuildContext context) {
@@ -26,22 +35,22 @@ class _PriceRangeSectionState extends State<PriceRangeSection> {
         ),
         const SizedBox(height: 10),
         RangeSlider(
-          values: _currentRangeValues,
+          values: _currentRangeValues!,
           min: 0,
           max: 2000,
           divisions: 100,
           activeColor: AppColors.primaryNeutral500,
           inactiveColor: AppColors.primaryNeutral200,
           labels: RangeLabels(
-            '\$${_currentRangeValues.start.round()}',
-            '\$${_currentRangeValues.end.round()}',
+            '\$${_currentRangeValues!.start.round()}',
+            '\$${_currentRangeValues!.end.round()}',
           ),
           onChanged: (RangeValues values) {
             setState(() {
               _currentRangeValues = values;
             });
             BlocProvider.of<ManageFilterCubit>(context)
-                .updateRangeValues(_currentRangeValues);
+                .updateRangeValues(_currentRangeValues!);
           },
         ),
         Padding(

@@ -8,6 +8,13 @@ class SortBySection extends StatefulWidget {
 }
 
 class _SortBySectionState extends State<SortBySection> {
+  @override
+  void initState() {
+    super.initState();
+
+    selectedSortBy = context.read<ManageFilterCubit>().selectedSortBye;
+  }
+
   int? selectedSortBy;
 
   @override

@@ -8,6 +8,13 @@ class ColorSection extends StatefulWidget {
 }
 
 class _ColorSectionState extends State<ColorSection> {
+  @override
+  void initState() {
+    super.initState();
+
+    selectedColor = context.read<ManageFilterCubit>().selectedColor;
+  }
+
   int? selectedColor;
 
   @override

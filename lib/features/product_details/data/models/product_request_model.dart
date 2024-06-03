@@ -5,7 +5,9 @@ class ProductRequestModel {
   final String? color;
   final double? minPrice;
   final double? maxPrice;
-  final String? sortBy; /// 'recent', 'lowest price', 'highest price'
+  final String? sortBy;
+
+  /// 'recent', 'lowest price', 'highest price'
 
   ProductRequestModel({
     required this.brandId,
@@ -16,4 +18,9 @@ class ProductRequestModel {
     this.maxPrice,
     this.sortBy,
   });
+
+  @override
+  String toString() {
+    return 'ProductRequestModel(brandId: $brandId, lastId: $lastId, gender: $gender, color: $color, minPrice: $minPrice, maxPrice: $maxPrice, sortBy: $sortBy)';
+  }
 }

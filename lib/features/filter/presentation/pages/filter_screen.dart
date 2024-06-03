@@ -7,6 +7,7 @@ import 'package:firebase_shoe_store/features/dashboard/domain/entities/brand_ent
 import 'package:firebase_shoe_store/features/dashboard/presentation/manager/get_brands_cubit.dart';
 import 'package:firebase_shoe_store/features/dashboard/presentation/widgets/primary_app_bar.dart';
 import 'package:firebase_shoe_store/features/filter/presentation/manager/manage_filter_cubit.dart';
+import 'package:firebase_shoe_store/features/product_details/presentation/manager/get_products_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -86,7 +87,24 @@ class FilterScreen extends StatelessWidget {
               child: Button.filled(
                 label: 'APPLY',
                 onPressed: () {
-                  /// TODO: Complete APPLY Logic
+                  BlocProvider.of<GetProductsCubit>(context).getProducts(
+                    firstTime: true,
+                    brandId: BlocProvider.of<GetBrandsCubit>(context)
+                        .selectedBrand!
+                        .id,
+                    gender: BlocProvider.of<ManageFilterCubit>(context)
+                        .selectedGenderValue,
+                    color: BlocProvider.of<ManageFilterCubit>(context)
+                        .selectedColorValue,
+                    minPrice: BlocProvider.of<ManageFilterCubit>(context)
+                        .minPriceValue,
+                    maxPrice: BlocProvider.of<ManageFilterCubit>(context)
+                        .maxPriceValue,
+                    sortBy: BlocProvider.of<ManageFilterCubit>(context)
+                        .selectedSortByeValue(),
+                  );
+
+                  context.pop();
                 },
               ),
             ),

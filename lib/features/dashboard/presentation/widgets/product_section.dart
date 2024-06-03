@@ -19,6 +19,13 @@ class _ProductSectionState extends State<ProductSection> {
           _scrollController.position.maxScrollExtent) {
         BlocProvider.of<GetProductsCubit>(context).getProducts(
           brandId: BlocProvider.of<GetBrandsCubit>(context).selectedBrand!.id,
+          gender:
+              BlocProvider.of<ManageFilterCubit>(context).selectedGenderValue,
+          color: BlocProvider.of<ManageFilterCubit>(context).selectedColorValue,
+          minPrice: BlocProvider.of<ManageFilterCubit>(context).minPriceValue,
+          maxPrice: BlocProvider.of<ManageFilterCubit>(context).maxPriceValue,
+          sortBy: BlocProvider.of<ManageFilterCubit>(context)
+              .selectedSortByeValue(),
         );
       }
     });
@@ -32,6 +39,14 @@ class _ProductSectionState extends State<ProductSection> {
           BlocProvider.of<GetProductsCubit>(context).getProducts(
             firstTime: true,
             brandId: BlocProvider.of<GetBrandsCubit>(context).selectedBrand!.id,
+            gender:
+                BlocProvider.of<ManageFilterCubit>(context).selectedGenderValue,
+            color:
+                BlocProvider.of<ManageFilterCubit>(context).selectedColorValue,
+            minPrice: BlocProvider.of<ManageFilterCubit>(context).minPriceValue,
+            maxPrice: BlocProvider.of<ManageFilterCubit>(context).maxPriceValue,
+            sortBy: BlocProvider.of<ManageFilterCubit>(context)
+                .selectedSortByeValue(),
           );
         }
       },
@@ -44,6 +59,10 @@ class _ProductSectionState extends State<ProductSection> {
                 backgroundColor: AppColors.error500,
               ),
             );
+
+            BlocProvider.of<GetProductsCubit>(context).getProducts(
+                brandId:
+                    BlocProvider.of<GetBrandsCubit>(context).selectedBrand!.id);
           }
         },
         builder: (context, state) {

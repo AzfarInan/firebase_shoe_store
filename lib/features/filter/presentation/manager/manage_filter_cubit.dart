@@ -12,8 +12,19 @@ class ManageFilterCubit extends Cubit<BaseState> {
     'Highest price',
   ];
   int? selectedSortBye;
-  String get selectedSortByeValue =>
-      selectedSortBye != null ? sortBye[selectedSortBye!] : '';
+  String? selectedSortByeValue() {
+    if (selectedSortBye != null) {
+      if (selectedSortBye == 0) {
+        return 'recent';
+      } else if (selectedSortBye == 1) {
+        return 'lowest_price';
+      } else if (selectedSortBye == 2) {
+        return 'highest_price';
+      }
+    }
+
+    return null;
+  }
 
   void selectSortBy(int index) {
     selectedSortBye = index;
@@ -38,8 +49,8 @@ class ManageFilterCubit extends Cubit<BaseState> {
   /// Gender
   final List<String> genders = ['Men', 'Women', 'Unisex'];
   int? selectedGender;
-  String get selectedGenderValue =>
-      selectedGender != null ? genders[selectedGender!] : '';
+  String? get selectedGenderValue =>
+      selectedGender != null ? genders[selectedGender!] : null;
 
   void selectGender(int index) {
     selectedGender = index;
@@ -72,8 +83,8 @@ class ManageFilterCubit extends Cubit<BaseState> {
     'Purple',
   ];
   int? selectedColor;
-  String get selectedColorValue =>
-      selectedColor != null ? colors[selectedColor!].toLowerCase() : '';
+  String? get selectedColorValue =>
+      selectedColor != null ? colors[selectedColor!].toLowerCase() : null;
 
   void selectColor(int index) {
     selectedColor = index;
@@ -98,6 +109,8 @@ class ManageFilterCubit extends Cubit<BaseState> {
   /// Range Values
   RangeValues rangeValues = const RangeValues(0, 2000);
   RangeValues? selectedRangeValue;
+  double? get minPriceValue => selectedRangeValue?.start;
+  double? get maxPriceValue => selectedRangeValue?.end;
 
   void updateRangeValues(RangeValues values) {
     selectedRangeValue = values;
