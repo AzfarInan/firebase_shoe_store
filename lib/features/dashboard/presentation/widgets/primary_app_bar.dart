@@ -14,6 +14,7 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.showCart = true,
     this.actions,
     this.centerTitle = false,
+    this.onBackButtonPressed,
   });
 
   final String title;
@@ -22,6 +23,7 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool showCart;
   final List<Widget>? actions;
   final bool centerTitle;
+  final VoidCallback? onBackButtonPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +34,11 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       leading: showLeading
           ? GestureDetector(
+              onTap: onBackButtonPressed ??
+                  () {
+                    Navigator.of(context).pop();
+                  },
               child: const Icon(Icons.arrow_back),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
             )
           : null,
       title: Text(

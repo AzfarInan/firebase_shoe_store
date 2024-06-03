@@ -7,6 +7,7 @@ import 'package:firebase_shoe_store/features/dashboard/data/repositories/brand_r
 import 'package:firebase_shoe_store/features/dashboard/domain/repositories/brand_repository.dart';
 import 'package:firebase_shoe_store/features/dashboard/domain/use_cases/get_brands.dart';
 import 'package:firebase_shoe_store/features/dashboard/presentation/manager/get_brands_cubit.dart';
+import 'package:firebase_shoe_store/features/filter/presentation/manager/manage_filter_cubit.dart';
 import 'package:firebase_shoe_store/features/product_details/data/data_sources/product_data_source.dart';
 import 'package:firebase_shoe_store/features/product_details/data/repositories/product_repository_impl.dart';
 import 'package:firebase_shoe_store/features/product_details/domain/repositories/product_repository.dart';
@@ -32,6 +33,7 @@ Future<void> setupServiceLocator() async {
   getIt.registerFactory(() => ManageReviewCubit());
   getIt.registerFactory(() => ManageProductCubit());
   getIt.registerFactory(() => ManageCartCubit());
+  getIt.registerFactory(() => ManageFilterCubit());
 
   /// Use cases
   getIt.registerLazySingleton(() => GetBrands(repository: getIt()));

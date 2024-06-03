@@ -46,6 +46,7 @@ class ProductDataSourceImpl implements ProductDataSource {
         }
       });
 
+      Logger().i('Products fetched successfully: ${products.length} products');
       return products;
     } catch (e) {
       throw Exception("Failed to fetch products: $e");

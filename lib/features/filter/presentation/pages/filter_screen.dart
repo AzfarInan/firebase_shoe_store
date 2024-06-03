@@ -6,10 +6,16 @@ import 'package:firebase_shoe_store/core/widgets/button.dart';
 import 'package:firebase_shoe_store/features/dashboard/domain/entities/brand_entity.dart';
 import 'package:firebase_shoe_store/features/dashboard/presentation/manager/get_brands_cubit.dart';
 import 'package:firebase_shoe_store/features/dashboard/presentation/widgets/primary_app_bar.dart';
+import 'package:firebase_shoe_store/features/filter/presentation/manager/manage_filter_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 part '../widgets/brand_section.dart';
+part '../widgets/price_range_section.dart';
+part '../widgets/sort_by_section.dart';
+part '../widgets/gender_section.dart';
+part '../widgets/color_section.dart';
 
 class FilterScreen extends StatelessWidget {
   const FilterScreen({super.key});
@@ -20,19 +26,25 @@ class FilterScreen extends StatelessWidget {
       backgroundColor: AppColors.primaryNeutral100,
       appBar: PrimaryAppBar(
         centerTitle: true,
+        onBackButtonPressed: () {
+          BlocProvider.of<ManageFilterCubit>(context).reset();
+          Navigator.of(context).pop();
+        },
         title: 'Filter',
         titleStyle: themeData.textTheme.headlineLarge,
         showLeading: true,
         showCart: false,
       ),
       body: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              BrandSection(),
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BrandSection(),
+            PriceRangeSection(),
+            SortBySection(),
+            GenderSection(),
+            ColorSection(),
+          ],
         ),
       ),
       bottomNavigationBar: Container(
@@ -42,13 +54,32 @@ class FilterScreen extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Expanded(
-              child: Button.outlined(
-                label: 'RESET (4)',
-                onPressed: () {
-                  /// TODO: RESET logic
-                },
-              ),
+            BlocBuilder<ManageFilterCubit, BaseState>(
+              builder: (context, state) {
+                var cubit = context.read<ManageFilterCubit>();
+
+                if (cubit.filters.isEmpty) {
+                  return Expanded(
+                    child: Button.outlined(
+                      label: 'RESET',
+                      onPressed: () {
+                        cubit.reset();
+                        context.pop();
+                      },
+                    ),
+                  );
+                }
+
+                return Expanded(
+                  child: Button.outlined(
+                    label: 'RESET (${cubit.filters.length})',
+                    onPressed: () {
+                      cubit.reset();
+                      context.pop();
+                    },
+                  ),
+                );
+              },
             ),
             const SizedBox(width: 16),
             Expanded(

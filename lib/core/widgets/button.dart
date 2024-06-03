@@ -18,6 +18,7 @@ class Button extends StatelessWidget {
     this.suffix,
     this.disable = false,
     this.borderRadius = 50,
+    this.borderColor,
   });
 
   final VoidCallback onPressed;
@@ -33,6 +34,7 @@ class Button extends StatelessWidget {
   final Widget? suffix;
   final bool disable;
   final double borderRadius;
+  final Color? borderColor;
 
   factory Button.filled({
     required String label,
@@ -75,6 +77,7 @@ class Button extends StatelessWidget {
     Widget? prefix,
     Widget? suffix,
     bool disable = false,
+    Color? borderColor,
   }) {
     return Button(
       label: label,
@@ -89,6 +92,7 @@ class Button extends StatelessWidget {
       prefix: prefix,
       suffix: suffix,
       disable: disable,
+      borderColor: borderColor,
     );
   }
 
@@ -111,7 +115,6 @@ class Button extends StatelessWidget {
         style: filled
             ? ElevatedButton.styleFrom(
                 elevation: 0,
-                padding: EdgeInsets.zero,
                 fixedSize: Size(width, height),
                 backgroundColor: background ?? AppColors.primaryNeutral500,
                 shape: RoundedRectangleBorder(
@@ -123,8 +126,8 @@ class Button extends StatelessWidget {
                 fixedSize: Size(width, height),
                 backgroundColor:
                     disable ? Colors.grey.shade300 : background ?? Colors.white,
-                side: const BorderSide(
-                  color: AppColors.primaryNeutral300,
+                side: BorderSide(
+                  color: borderColor ?? AppColors.primaryNeutral300,
                   width: 1,
                 ),
                 shape: RoundedRectangleBorder(

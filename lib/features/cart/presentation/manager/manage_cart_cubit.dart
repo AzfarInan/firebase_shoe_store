@@ -26,12 +26,13 @@ class ManageCartCubit extends Cubit<BaseState> {
         total: total,
       );
       _updateCache();
-
+      emit(const SuccessState());
       return;
     }
 
     cartItems.add(cart);
     _updateCache();
+    emit(const SuccessState());
   }
 
   void removeFromCart(Cart cart) {
