@@ -8,6 +8,11 @@ import 'package:firebase_shoe_store/features/dashboard/domain/repositories/brand
 import 'package:firebase_shoe_store/features/dashboard/domain/use_cases/get_brands.dart';
 import 'package:firebase_shoe_store/features/dashboard/presentation/manager/get_brands_cubit.dart';
 import 'package:firebase_shoe_store/features/filter/presentation/manager/manage_filter_cubit.dart';
+import 'package:firebase_shoe_store/features/order/data/data_sources/order_data_source.dart';
+import 'package:firebase_shoe_store/features/order/data/repositories/order_repository_impl.dart';
+import 'package:firebase_shoe_store/features/order/domain/repositories/order_repository.dart';
+import 'package:firebase_shoe_store/features/order/domain/use_cases/create_order.dart';
+import 'package:firebase_shoe_store/features/order/presentation/manager/create_order_cubit.dart';
 import 'package:firebase_shoe_store/features/product_details/data/data_sources/product_data_source.dart';
 import 'package:firebase_shoe_store/features/product_details/data/repositories/product_repository_impl.dart';
 import 'package:firebase_shoe_store/features/product_details/domain/repositories/product_repository.dart';
@@ -34,10 +39,12 @@ Future<void> setupServiceLocator() async {
   getIt.registerFactory(() => ManageProductCubit());
   getIt.registerFactory(() => ManageCartCubit());
   getIt.registerFactory(() => ManageFilterCubit());
+  getIt.registerFactory(() => CreateOrderCubit(useCase: getIt()));
 
   /// Use cases
   getIt.registerLazySingleton(() => GetBrands(repository: getIt()));
   getIt.registerLazySingleton(() => GetProducts(repository: getIt()));
+  getIt.registerLazySingleton(() => CreateOrder(repository: getIt()));
 
   /// Repositories
   getIt.registerLazySingleton<BrandRepository>(
@@ -46,10 +53,14 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<ProductRepository>(
     () => ProductRepositoryImpl(getIt()),
   );
+  getIt.registerLazySingleton<OrderRepository>(
+    () => OrderRepositoryImpl(getIt()),
+  );
 
   /// Data sources
   getIt.registerLazySingleton<BrandDataSource>(() => BrandDataSourceImpl());
   getIt.registerLazySingleton<ProductDataSource>(() => ProductDataSourceImpl());
+  getIt.registerLazySingleton<OrderDataSource>(() => OrderDataSourceImpl());
 
   /// Other dependencies
   getIt.registerLazySingleton(() => AppRouter());

@@ -58,6 +58,11 @@ class GetBrandsCubit extends Cubit<BaseState> {
     emit(const SuccessState());
   }
 
+  String getBrandName(String brandId) {
+    final brand = brands.firstWhere((element) => element.id == brandId);
+    return brand.name;
+  }
+
   void clearData() {
     brands.clear();
     brands.add(const Brand(id: 'All', name: 'All', logo: '', products: []));

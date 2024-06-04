@@ -59,10 +59,6 @@ class _ProductSectionState extends State<ProductSection> {
                 backgroundColor: AppColors.error500,
               ),
             );
-
-            BlocProvider.of<GetProductsCubit>(context).getProducts(
-                brandId:
-                    BlocProvider.of<GetBrandsCubit>(context).selectedBrand!.id);
           }
         },
         builder: (context, state) {

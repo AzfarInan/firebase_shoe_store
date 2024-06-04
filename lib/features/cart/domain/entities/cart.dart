@@ -1,5 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_shoe_store/features/cart/domain/entities/cart_item.dart';
+import 'package:firebase_shoe_store/features/dashboard/presentation/manager/get_brands_cubit.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Cart extends Equatable {
   final CartItem cartItem;
@@ -15,6 +18,14 @@ class Cart extends Equatable {
     required this.size,
     required this.total,
   });
+
+  String brandColorQuantity(BuildContext context) {
+    return '${BlocProvider.of<GetBrandsCubit>(context).getBrandName(cartItem.brandId!)} . $color . $size . Qty $quantity';
+  }
+
+  String brandColorSize(BuildContext context) {
+    return '${BlocProvider.of<GetBrandsCubit>(context).getBrandName(cartItem.brandId!)} . $color . $size';
+  }
 
   /// FromJson
   Cart.fromJson(Map<String, dynamic> json)

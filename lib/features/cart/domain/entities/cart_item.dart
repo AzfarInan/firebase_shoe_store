@@ -19,6 +19,10 @@ class CartItem extends Equatable {
     required this.gender,
   });
 
+  String getFirstImage() {
+    return images![0];
+  }
+
   /// FromJson
   CartItem.fromJson(Map<String, dynamic> json)
       : productId = json['productId'],

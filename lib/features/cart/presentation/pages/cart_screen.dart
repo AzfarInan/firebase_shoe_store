@@ -151,7 +151,8 @@ class _CartScreenState extends State<CartScreen> {
                             ),
                             const SizedBox(height: 10),
                             Text(
-                              '${cubit.cartItems[index].cartItem.gender} . ${cubit.cartItems[index].color} . ${formatNumber(cubit.cartItems[index].size)}',
+                              cubit.cartItems[index]
+                                  .brandColorSize(context),
                               style: themeData.textTheme.bodySmall!.copyWith(
                                 color: AppColors.primaryNeutral400,
                                 fontWeight: FontWeight.w300,

@@ -1,6 +1,7 @@
 import 'package:firebase_shoe_store/core/base/base_state.dart';
 import 'package:firebase_shoe_store/core/cache_service/cache_manager.dart';
 import 'package:firebase_shoe_store/core/service_locator/service_locator.dart';
+import 'package:firebase_shoe_store/core/widgets/number_formats.dart';
 import 'package:firebase_shoe_store/features/cart/domain/entities/cart.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -48,11 +49,32 @@ class ManageCartCubit extends Cubit<BaseState> {
   }
 
   void getItemsFromCache() async {
-    resetCart();
+    cartItems.clear();
     cartItems = await getIt.get<CacheManager>().getCarts();
   }
 
+  String getGrandTotal() {
+    double total = 0;
+    cartItems.forEach((element) {
+      total += element.total;
+    });
+
+    total += 20;
+    return formatCurrency(total);
+  }
+
+  String getSubtotal() {
+    double total = 0;
+    cartItems.forEach((element) {
+      total += element.total;
+    });
+
+    return formatCurrency(total);
+  }
+
   void resetCart() {
+    emit(const LoadingAgainState());
     cartItems.clear();
+    _updateCache();
   }
 }

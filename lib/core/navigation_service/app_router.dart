@@ -3,6 +3,7 @@ import 'package:firebase_shoe_store/core/globals/route_names.dart';
 import 'package:firebase_shoe_store/features/cart/presentation/pages/cart_screen.dart';
 import 'package:firebase_shoe_store/features/dashboard/presentation/pages/dashboard_screen.dart';
 import 'package:firebase_shoe_store/features/filter/presentation/pages/filter_screen.dart';
+import 'package:firebase_shoe_store/features/order/presentation/pages/order_summary_screen.dart';
 import 'package:firebase_shoe_store/features/product_details/domain/entities/product.dart';
 import 'package:firebase_shoe_store/features/product_details/presentation/pages/product_details_screen.dart';
 import 'package:firebase_shoe_store/features/reviews/presentation/pages/review_screen.dart';
@@ -47,6 +48,13 @@ class AppRouter {
             path: RouteNames.cart,
             builder: (BuildContext context, GoRouterState state) {
               return const CartScreen();
+            },
+          ),
+          GoRoute(
+            name: RouteNames.checkout,
+            path: RouteNames.checkout,
+            builder: (BuildContext context, GoRouterState state) {
+              return const OrderSummaryScreen();
             },
           ),
         ],
