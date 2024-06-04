@@ -3,9 +3,10 @@ import 'package:firebase_shoe_store/core/globals/route_names.dart';
 import 'package:firebase_shoe_store/features/cart/presentation/pages/cart_screen.dart';
 import 'package:firebase_shoe_store/features/dashboard/presentation/pages/dashboard_screen.dart';
 import 'package:firebase_shoe_store/features/filter/presentation/pages/filter_screen.dart';
+import 'package:firebase_shoe_store/features/order/presentation/pages/order_history_screen.dart';
 import 'package:firebase_shoe_store/features/order/presentation/pages/order_summary_screen.dart';
-import 'package:firebase_shoe_store/features/product_details/domain/entities/product.dart';
-import 'package:firebase_shoe_store/features/product_details/presentation/pages/product_details_screen.dart';
+import 'package:firebase_shoe_store/features/product/domain/entities/product.dart';
+import 'package:firebase_shoe_store/features/product/presentation/pages/product_details_screen.dart';
 import 'package:firebase_shoe_store/features/reviews/presentation/pages/review_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -55,6 +56,13 @@ class AppRouter {
             path: RouteNames.checkout,
             builder: (BuildContext context, GoRouterState state) {
               return const OrderSummaryScreen();
+            },
+          ),
+          GoRoute(
+            name: RouteNames.orderHistory,
+            path: RouteNames.orderHistory,
+            builder: (BuildContext context, GoRouterState state) {
+              return const OrderHistoryScreen();
             },
           ),
         ],

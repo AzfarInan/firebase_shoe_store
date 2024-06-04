@@ -7,7 +7,7 @@ import 'package:firebase_shoe_store/features/cart/presentation/manager/manage_ca
 import 'package:firebase_shoe_store/features/dashboard/presentation/manager/get_brands_cubit.dart';
 import 'package:firebase_shoe_store/features/dashboard/presentation/widgets/primary_app_bar.dart';
 import 'package:firebase_shoe_store/features/filter/presentation/manager/manage_filter_cubit.dart';
-import 'package:firebase_shoe_store/features/product_details/presentation/manager/get_products_cubit.dart';
+import 'package:firebase_shoe_store/features/product/presentation/manager/get_products_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

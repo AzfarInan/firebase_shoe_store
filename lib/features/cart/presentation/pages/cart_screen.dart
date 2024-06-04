@@ -33,6 +33,20 @@ class _CartScreenState extends State<CartScreen> {
         titleStyle: themeData.textTheme.headlineLarge,
         showLeading: true,
         showCart: false,
+        actions: [
+          GestureDetector(
+            onTap: () {
+              context.pushNamed(RouteNames.orderHistory);
+            },
+            child: Image.asset(
+              'assets/images/order_history.png',
+              width: 24,
+              height: 24,
+              color: AppColors.primaryNeutral900,
+            ),
+          ),
+          const SizedBox(width: 20),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -151,8 +165,7 @@ class _CartScreenState extends State<CartScreen> {
                             ),
                             const SizedBox(height: 10),
                             Text(
-                              cubit.cartItems[index]
-                                  .brandColorSize(context),
+                              cubit.cartItems[index].brandColorSize(context),
                               style: themeData.textTheme.bodySmall!.copyWith(
                                 color: AppColors.primaryNeutral400,
                                 fontWeight: FontWeight.w300,

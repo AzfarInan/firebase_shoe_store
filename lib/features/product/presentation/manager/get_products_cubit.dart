@@ -1,7 +1,7 @@
 import 'package:firebase_shoe_store/core/base/base_state.dart';
-import 'package:firebase_shoe_store/features/product_details/data/models/product_request_model.dart';
-import 'package:firebase_shoe_store/features/product_details/domain/entities/product.dart';
-import 'package:firebase_shoe_store/features/product_details/domain/use_cases/get_products.dart';
+import 'package:firebase_shoe_store/features/product/data/models/product_request_model.dart';
+import 'package:firebase_shoe_store/features/product/domain/entities/product.dart';
+import 'package:firebase_shoe_store/features/product/domain/use_cases/get_products.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 

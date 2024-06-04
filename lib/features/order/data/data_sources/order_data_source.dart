@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_shoe_store/features/cart/domain/entities/cart.dart';
+import 'package:firebase_shoe_store/features/order/data/models/order_history_model.dart';
 import 'package:logger/logger.dart';
 import 'package:uuid/uuid.dart';
 
 abstract class OrderDataSource {
   Future<String> createOrder({required List<Cart> carts});
+  Future<List<OrderHistoryModel>> getOrderHistory(String? lastId);
 }
 
 class OrderDataSourceImpl implements OrderDataSource {
@@ -32,6 +34,40 @@ class OrderDataSourceImpl implements OrderDataSource {
     } catch (e) {
       Logger().e('Error creating order: $e');
       return 'Error creating order';
+    }
+  }
+
+  @override
+  Future<List<OrderHistoryModel>> getOrderHistory(String? lastId) async {
+    try {
+      Query query = _firestore
+          .collection('orders')
+          .orderBy(
+        'createdAt',
+        descending: true,
+      )
+          .limit(10);
+
+      if (lastId != null) {
+        DocumentSnapshot lastDoc =
+        await _firestore.collection('orders').doc(lastId).get();
+        query = query.startAfterDocument(lastDoc);
+      }
+
+      QuerySnapshot querySnapshot = await query.get();
+
+      Logger()
+          .i(
+          'Order History fetched successfully: ${querySnapshot.docs.length}');
+      return querySnapshot.docs.map((doc) {
+        return OrderHistoryModel.fromJson({
+          'id': doc.id,
+          ...doc.data() as Map<String, dynamic>,
+        });
+      }).toList();
+    } catch (e) {
+      Logger().e('Error fetching order history: $e');
+      return [];
     }
   }
 }

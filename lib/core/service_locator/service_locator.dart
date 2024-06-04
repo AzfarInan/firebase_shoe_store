@@ -12,13 +12,15 @@ import 'package:firebase_shoe_store/features/order/data/data_sources/order_data_
 import 'package:firebase_shoe_store/features/order/data/repositories/order_repository_impl.dart';
 import 'package:firebase_shoe_store/features/order/domain/repositories/order_repository.dart';
 import 'package:firebase_shoe_store/features/order/domain/use_cases/create_order.dart';
+import 'package:firebase_shoe_store/features/order/domain/use_cases/get_order_history.dart';
 import 'package:firebase_shoe_store/features/order/presentation/manager/create_order_cubit.dart';
-import 'package:firebase_shoe_store/features/product_details/data/data_sources/product_data_source.dart';
-import 'package:firebase_shoe_store/features/product_details/data/repositories/product_repository_impl.dart';
-import 'package:firebase_shoe_store/features/product_details/domain/repositories/product_repository.dart';
-import 'package:firebase_shoe_store/features/product_details/domain/use_cases/get_products.dart';
-import 'package:firebase_shoe_store/features/product_details/presentation/manager/get_products_cubit.dart';
-import 'package:firebase_shoe_store/features/product_details/presentation/manager/manage_product_cubit.dart';
+import 'package:firebase_shoe_store/features/order/presentation/manager/get_order_history_cubit.dart';
+import 'package:firebase_shoe_store/features/product/data/data_sources/product_data_source.dart';
+import 'package:firebase_shoe_store/features/product/data/repositories/product_repository_impl.dart';
+import 'package:firebase_shoe_store/features/product/domain/repositories/product_repository.dart';
+import 'package:firebase_shoe_store/features/product/domain/use_cases/get_products.dart';
+import 'package:firebase_shoe_store/features/product/presentation/manager/get_products_cubit.dart';
+import 'package:firebase_shoe_store/features/product/presentation/manager/manage_product_cubit.dart';
 import 'package:firebase_shoe_store/features/reviews/presentation/manager/manage_review_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -40,11 +42,13 @@ Future<void> setupServiceLocator() async {
   getIt.registerFactory(() => ManageCartCubit());
   getIt.registerFactory(() => ManageFilterCubit());
   getIt.registerFactory(() => CreateOrderCubit(useCase: getIt()));
+  getIt.registerFactory(() => GetOrderHistoryCubit(useCase: getIt()));
 
   /// Use cases
   getIt.registerLazySingleton(() => GetBrands(repository: getIt()));
   getIt.registerLazySingleton(() => GetProducts(repository: getIt()));
   getIt.registerLazySingleton(() => CreateOrder(repository: getIt()));
+  getIt.registerLazySingleton(() => GetOrderHistory(repository: getIt()));
 
   /// Repositories
   getIt.registerLazySingleton<BrandRepository>(

@@ -3,7 +3,7 @@ import 'package:firebase_shoe_store/core/base/base_state.dart';
 import 'package:firebase_shoe_store/core/theme/app_colors.dart';
 import 'package:firebase_shoe_store/core/theme/theme_data.dart';
 import 'package:firebase_shoe_store/features/dashboard/presentation/widgets/primary_app_bar.dart';
-import 'package:firebase_shoe_store/features/product_details/domain/entities/product.dart';
+import 'package:firebase_shoe_store/features/product/domain/entities/product.dart';
 import 'package:firebase_shoe_store/features/reviews/presentation/manager/manage_review_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

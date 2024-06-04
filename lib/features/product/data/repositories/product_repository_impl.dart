@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_shoe_store/core/base/failure.dart';
-import 'package:firebase_shoe_store/features/product_details/data/data_sources/product_data_source.dart';
-import 'package:firebase_shoe_store/features/product_details/data/models/product_model.dart';
-import 'package:firebase_shoe_store/features/product_details/data/models/product_request_model.dart';
-import 'package:firebase_shoe_store/features/product_details/domain/entities/product.dart';
-import 'package:firebase_shoe_store/features/product_details/domain/repositories/product_repository.dart';
+import 'package:firebase_shoe_store/features/product/data/data_sources/product_data_source.dart';
+import 'package:firebase_shoe_store/features/product/data/models/product_model.dart';
+import 'package:firebase_shoe_store/features/product/data/models/product_request_model.dart';
+import 'package:firebase_shoe_store/features/product/domain/entities/product.dart';
+import 'package:firebase_shoe_store/features/product/domain/repositories/product_repository.dart';
 import 'package:logger/logger.dart';
 
 class ProductRepositoryImpl implements ProductRepository {

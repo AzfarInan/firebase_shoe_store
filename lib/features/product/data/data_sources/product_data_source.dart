@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
-import 'package:firebase_shoe_store/features/product_details/data/models/product_model.dart';
-import 'package:firebase_shoe_store/features/product_details/data/models/product_request_model.dart';
+import 'package:firebase_shoe_store/features/product/data/models/product_model.dart';
+import 'package:firebase_shoe_store/features/product/data/models/product_request_model.dart';
 import 'package:logger/logger.dart';
 
 abstract class ProductDataSource {

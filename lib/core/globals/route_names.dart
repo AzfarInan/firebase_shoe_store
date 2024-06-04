@@ -5,4 +5,5 @@ class RouteNames {
   static const String filter = 'filter';
   static const String cart = 'cart';
   static const String checkout = 'checkout';
+  static const String orderHistory = 'order-history';
 }

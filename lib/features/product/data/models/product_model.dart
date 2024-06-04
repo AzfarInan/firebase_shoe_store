@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_shoe_store/features/product_details/domain/entities/product.dart';
+import 'package:firebase_shoe_store/features/product/domain/entities/product.dart';
 import 'package:firebase_shoe_store/features/reviews/domain/entities/review.dart';
 
 class ProductModel extends Product {
