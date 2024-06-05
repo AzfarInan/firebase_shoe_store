@@ -23,6 +23,16 @@ class OrderHistory extends Equatable {
     return formatCurrency(total);
   }
 
+  String getSubTotal() {
+    double total = 0;
+    for (var cart in carts) {
+      total += cart.total;
+    }
+
+    total - 20;
+    return formatCurrency(total);
+  }
+
   String getFirstImage() {
     return carts.first.cartItem.images!.first;
   }

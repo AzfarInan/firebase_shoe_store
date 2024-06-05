@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_shoe_store/core/base/base_state.dart';
+import 'package:firebase_shoe_store/core/globals/route_names.dart';
 import 'package:firebase_shoe_store/core/theme/app_colors.dart';
 import 'package:firebase_shoe_store/core/theme/theme_data.dart';
 import 'package:firebase_shoe_store/features/dashboard/presentation/widgets/primary_app_bar.dart';
 import 'package:firebase_shoe_store/features/order/presentation/manager/get_order_history_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class OrderHistoryScreen extends StatefulWidget {
   const OrderHistoryScreen({super.key});
@@ -216,12 +218,18 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                             fontWeight: FontWeight.w300,
                           ),
                         ),
-                        Text(
-                          'View All',
-                          style: themeData.textTheme.bodyMedium!.copyWith(
-                            color: AppColors.information500,
-                            fontWeight: FontWeight.w600,
-                            decoration: TextDecoration.underline,
+                        GestureDetector(
+                          onTap: () {
+                            context.pushNamed(RouteNames.orderDetails,
+                                extra: order);
+                          },
+                          child: Text(
+                            'View All',
+                            style: themeData.textTheme.bodyMedium!.copyWith(
+                              color: AppColors.information500,
+                              fontWeight: FontWeight.w600,
+                              decoration: TextDecoration.underline,
+                            ),
                           ),
                         ),
                       ],

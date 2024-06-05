@@ -6,4 +6,5 @@ class RouteNames {
   static const String cart = 'cart';
   static const String checkout = 'checkout';
   static const String orderHistory = 'order-history';
+  static const String orderDetails = 'order-details';
 }
