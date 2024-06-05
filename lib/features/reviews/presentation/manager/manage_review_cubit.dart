@@ -20,6 +20,7 @@ class ManageReviewCubit extends Cubit<BaseState> {
     emit(const LoadingState());
     reset();
     reviewList.addAll(reviews);
+    reviewList.sort((a, b) => b.createdAt.compareTo(a.createdAt));
     emit(const SuccessState());
   }
 
@@ -35,35 +36,42 @@ class ManageReviewCubit extends Cubit<BaseState> {
       case 'All':
         reviewList.clear();
         reviewList.addAll(reviews);
+        reviewList.sort((a, b) => b.createdAt.compareTo(a.createdAt));
         break;
       case '5 Stars':
         reviewList.clear();
         reviewList
             .addAll(reviews.where((review) => review.rating == 5).toList());
+        reviewList.sort((a, b) => b.createdAt.compareTo(a.createdAt));
         break;
       case '4 Stars':
         reviewList.clear();
         reviewList
             .addAll(reviews.where((review) => review.rating == 4).toList());
+        reviewList.sort((a, b) => b.createdAt.compareTo(a.createdAt));
         break;
       case '3 Stars':
         reviewList.clear();
         reviewList
             .addAll(reviews.where((review) => review.rating == 3).toList());
+        reviewList.sort((a, b) => b.createdAt.compareTo(a.createdAt));
         break;
       case '2 Stars':
         reviewList.clear();
         reviewList
             .addAll(reviews.where((review) => review.rating == 2).toList());
+        reviewList.sort((a, b) => b.createdAt.compareTo(a.createdAt));
         break;
       case '1 Star':
         reviewList.clear();
         reviewList
             .addAll(reviews.where((review) => review.rating == 1).toList());
+        reviewList.sort((a, b) => b.createdAt.compareTo(a.createdAt));
         break;
       default:
         reviewList.clear();
         reviewList.addAll(reviews);
+        reviewList.sort((a, b) => b.createdAt.compareTo(a.createdAt));
     }
   }
 

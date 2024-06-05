@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_shoe_store/core/base/base_state.dart';
 import 'package:firebase_shoe_store/core/theme/app_colors.dart';
 import 'package:firebase_shoe_store/core/theme/theme_data.dart';
 import 'package:firebase_shoe_store/core/widgets/button.dart';
@@ -21,47 +22,66 @@ class OrderDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.primaryNeutral100,
-      appBar: PrimaryAppBar(
-        title: 'Order Details',
-        centerTitle: true,
-        titleStyle: themeData.textTheme.headlineLarge,
-        showLeading: true,
-        showCart: false,
-      ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-        children: [
-          buildSectionHeader(context, 'Information'),
-          const SizedBox(height: 8),
-          Container(
-            decoration: BoxDecoration(
-              color: AppColors.primaryNeutral0,
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: AppColors.primaryNeutral300,
-                width: 1,
+    return BlocListener<CreateReviewCubit, BaseState>(
+      listener: (context, state) {
+        if (state is SuccessState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Review added successfully'),
+              backgroundColor: AppColors.success800,
+            ),
+          );
+        } else if (state is ErrorState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.data.toString()),
+              backgroundColor: AppColors.error800,
+            ),
+          );
+        }
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.primaryNeutral100,
+        appBar: PrimaryAppBar(
+          title: 'Order Details',
+          centerTitle: true,
+          titleStyle: themeData.textTheme.headlineLarge,
+          showLeading: true,
+          showCart: false,
+        ),
+        body: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+          children: [
+            buildSectionHeader(context, 'Information'),
+            const SizedBox(height: 8),
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.primaryNeutral0,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: AppColors.primaryNeutral300,
+                  width: 1,
+                ),
+              ),
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  buildInfoRow(context, 'Order ID', orderHistory.id),
+                  buildInfoRow(
+                    context,
+                    'Order Date',
+                    orderHistory.getFormattedDate(),
+                  ),
+                  buildInfoRow(context, 'Payment Method', 'Credit Card'),
+                  buildInfoRow(context, 'Location', 'Semarang, Indonesia'),
+                ],
               ),
             ),
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                buildInfoRow(context, 'Order ID', orderHistory.id),
-                buildInfoRow(
-                  context,
-                  'Order Date',
-                  orderHistory.getFormattedDate(),
-                ),
-                buildInfoRow(context, 'Payment Method', 'Credit Card'),
-                buildInfoRow(context, 'Location', 'Semarang, Indonesia'),
-              ],
-            ),
-          ),
-          buildOrderItems(context),
-        ],
+            buildOrderItems(context),
+          ],
+        ),
       ),
     );
   }

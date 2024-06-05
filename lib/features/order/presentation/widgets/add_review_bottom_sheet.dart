@@ -116,7 +116,7 @@ class _AddReviewBottomSheetState extends State<AddReviewBottomSheet> {
                         request: CreateReviewRequest(
                           productId: widget.productId,
                           comment: _reviewController.text,
-                          rating: int.parse(myRating.toString()),
+                          rating: myRating.toInt(),
                           userImage:
                               "https://firebasestorage.googleapis.com/v0/b/fir-shoe-store-ad351.appspot.com/o/324887.jpg?alt=media&token=44741a3d-6d34-4e97-a972-a5c0500edd23",
                           userName: "The Joker",
