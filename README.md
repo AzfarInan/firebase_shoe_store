@@ -93,6 +93,7 @@
 - **Pagination**: Added pagination to the dashboard, user can see the next page by scrolling to the bottom of the page.
 All the states are handled properly. User will get 10 data per page.
 - **Filter**: Added filter to the dashboard, user can filter the products based on the Brands, Price Range, Gender and Colors.
+  - PS- Some filters won't work due to not adding those specific composite indexes in the Firebase Datastore.
 - **Sort By**: Added sort by feature to the filter, user can sort the products based on the Price and Created Date.
 - **Cart Cache**: Added cart cache to the app, user can see the products which are added to the cart even after closing the app.
 - **Order History**: Added order history to the app, user can see the history of the orders which are placed by the user.

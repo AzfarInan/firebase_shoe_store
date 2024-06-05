@@ -76,6 +76,10 @@ class FilterScreen extends StatelessWidget {
                     label: 'RESET (${cubit.filters.length})',
                     onPressed: () {
                       cubit.reset();
+                      BlocProvider.of<GetProductsCubit>(context).getProducts(
+                        firstTime: true,
+                        brandId: 'All',
+                      );
                       context.pop();
                     },
                   ),

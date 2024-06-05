@@ -60,7 +60,9 @@ class AddToCartSuccessBottomSheet extends StatelessWidget {
                   Expanded(
                     child: Button(
                       onPressed: () {
-                        context.pushNamed(RouteNames.cart);
+                        context
+                          ..pop()
+                          ..pushNamed(RouteNames.cart);
                       },
                       label: 'TO CART',
                     ),
