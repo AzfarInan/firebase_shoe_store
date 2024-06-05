@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:firebase_shoe_store/core/widgets/number_formats.dart';
 import 'package:firebase_shoe_store/features/cart/domain/entities/cart_item.dart';
 import 'package:firebase_shoe_store/features/dashboard/presentation/manager/get_brands_cubit.dart';
 import 'package:flutter/cupertino.dart';
