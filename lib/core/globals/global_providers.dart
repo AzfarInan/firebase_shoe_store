@@ -6,6 +6,7 @@ import 'package:firebase_shoe_store/features/order/presentation/manager/create_o
 import 'package:firebase_shoe_store/features/order/presentation/manager/get_order_history_cubit.dart';
 import 'package:firebase_shoe_store/features/product/presentation/manager/get_products_cubit.dart';
 import 'package:firebase_shoe_store/features/product/presentation/manager/manage_product_cubit.dart';
+import 'package:firebase_shoe_store/features/reviews/presentation/manager/create_review_cubit.dart';
 import 'package:firebase_shoe_store/features/reviews/presentation/manager/manage_review_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,5 +20,6 @@ class GlobalBlocProviders {
     BlocProvider(create: (_) => getIt<ManageFilterCubit>()),
     BlocProvider(create: (_) => getIt<CreateOrderCubit>()),
     BlocProvider(create: (_) => getIt<GetOrderHistoryCubit>()),
+    BlocProvider(create: (_) => getIt<CreateReviewCubit>()),
   ];
 }

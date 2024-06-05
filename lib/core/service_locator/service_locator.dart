@@ -21,6 +21,11 @@ import 'package:firebase_shoe_store/features/product/domain/repositories/product
 import 'package:firebase_shoe_store/features/product/domain/use_cases/get_products.dart';
 import 'package:firebase_shoe_store/features/product/presentation/manager/get_products_cubit.dart';
 import 'package:firebase_shoe_store/features/product/presentation/manager/manage_product_cubit.dart';
+import 'package:firebase_shoe_store/features/reviews/data/data_sources/review_data_source.dart';
+import 'package:firebase_shoe_store/features/reviews/data/repositories/review_repository_impl.dart';
+import 'package:firebase_shoe_store/features/reviews/domain/repositories/review_repository.dart';
+import 'package:firebase_shoe_store/features/reviews/domain/use_cases/create_review.dart';
+import 'package:firebase_shoe_store/features/reviews/presentation/manager/create_review_cubit.dart';
 import 'package:firebase_shoe_store/features/reviews/presentation/manager/manage_review_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,12 +48,14 @@ Future<void> setupServiceLocator() async {
   getIt.registerFactory(() => ManageFilterCubit());
   getIt.registerFactory(() => CreateOrderCubit(useCase: getIt()));
   getIt.registerFactory(() => GetOrderHistoryCubit(useCase: getIt()));
+  getIt.registerFactory(() => CreateReviewCubit(useCase: getIt()));
 
   /// Use cases
   getIt.registerLazySingleton(() => GetBrands(repository: getIt()));
   getIt.registerLazySingleton(() => GetProducts(repository: getIt()));
   getIt.registerLazySingleton(() => CreateOrder(repository: getIt()));
   getIt.registerLazySingleton(() => GetOrderHistory(repository: getIt()));
+  getIt.registerLazySingleton(() => CreateReview(repository: getIt()));
 
   /// Repositories
   getIt.registerLazySingleton<BrandRepository>(
@@ -60,11 +67,15 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<OrderRepository>(
     () => OrderRepositoryImpl(getIt()),
   );
+  getIt.registerLazySingleton<ReviewRepository>(
+    () => ReviewRepositoryImpl(getIt()),
+  );
 
   /// Data sources
   getIt.registerLazySingleton<BrandDataSource>(() => BrandDataSourceImpl());
   getIt.registerLazySingleton<ProductDataSource>(() => ProductDataSourceImpl());
   getIt.registerLazySingleton<OrderDataSource>(() => OrderDataSourceImpl());
+  getIt.registerLazySingleton<ReviewDataSource>(() => ReviewDataSourceImpl());
 
   /// Other dependencies
   getIt.registerLazySingleton(() => AppRouter());

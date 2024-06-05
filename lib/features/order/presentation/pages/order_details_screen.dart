@@ -1,10 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_shoe_store/core/theme/app_colors.dart';
 import 'package:firebase_shoe_store/core/theme/theme_data.dart';
+import 'package:firebase_shoe_store/core/widgets/button.dart';
 import 'package:firebase_shoe_store/core/widgets/number_formats.dart';
 import 'package:firebase_shoe_store/features/dashboard/presentation/widgets/primary_app_bar.dart';
 import 'package:firebase_shoe_store/features/order/domain/entities/order_history.dart';
+import 'package:firebase_shoe_store/features/reviews/domain/entities/create_review_request.dart';
+import 'package:firebase_shoe_store/features/reviews/presentation/manager/create_review_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+part '../widgets/add_review_bottom_sheet.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
   const OrderDetailsScreen({super.key, required this.orderHistory});
@@ -174,10 +182,23 @@ class OrderDetailsScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w300,
                               ),
                             ),
-                            Image.asset(
-                              'assets/images/empty_star.png',
-                              width: 16,
-                              height: 16,
+                            GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AddReviewBottomSheet(
+                                      productId: cart.cartItem.productId!,
+                                    );
+                                  },
+                                );
+                              },
+                              child: Image.asset(
+                                'assets/images/empty_star.png',
+                                width: 16,
+                                height: 16,
+                              ),
                             ),
                           ],
                         ),

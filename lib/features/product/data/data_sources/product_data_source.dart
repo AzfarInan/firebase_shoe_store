@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_shoe_store/core/firebase_functions/firebase_functions.dart';
 import 'package:firebase_shoe_store/features/product/data/models/product_model.dart';
 import 'package:firebase_shoe_store/features/product/data/models/product_request_model.dart';
 import 'package:logger/logger.dart';
@@ -87,19 +87,6 @@ class ProductDataSourceImpl implements ProductDataSource {
       return products;
     } catch (e) {
       throw Exception("Failed to fetch products: $e");
-    }
-  }
-
-  Future<void> updateProductRating(String productId) async {
-    try {
-      HttpsCallable callable = FirebaseFunctions.instance
-          .httpsCallable('calculateAverageProductRatings');
-      final result = await callable.call(<String, dynamic>{
-        'productId': productId,
-      });
-      print(result.data['message']);
-    } catch (e) {
-      print('Failed to update product rating: $e');
     }
   }
 }
